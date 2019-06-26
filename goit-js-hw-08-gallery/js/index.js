@@ -1,6 +1,7 @@
 'use strict';
 
 import gallery from '../data/gallery-items.js';
+import { closeModal, openModal } from '../utils/modal.js';
 
 function appendGalleryMarkup() {
   //   const fullview = createFullview();
@@ -36,7 +37,7 @@ function createPreview(gallery) {
       } class="gallery__image"><span class="gallery__icon">
       <i class="material-icons">zoom_out_map</i>
       </span></a></li>`,
-    '',
+    ''
   );
 
   //   `<ul class="preview">${listItems}</ul>`;
@@ -44,35 +45,19 @@ function createPreview(gallery) {
 
 appendGalleryMarkup();
 
-const closeModal = e => {
-  e.preventDefault();
-  console.log(e.target.parentNode.className);
-  if (
-    e.keyCode === 27 ||
-    e.target.className === 'material-icons' ||
-    e.target.parentNode.className === 'lightbox is-open'
-  )
-    document.querySelector('.lightbox').classList.remove('is-open');
-};
-
-const openModal = e => {
-  e.preventDefault();
-  console.log(e.target.attributes.alt.nodeValue);
-  const currentImage = document.querySelector('.lightbox___image');
-
-  currentImage.setAttribute('src', e.target.dataset.source);
-  currentImage.setAttribute('alt', e.target.attributes.alt.nodeValue);
-  document.querySelector('.lightbox').classList.add('is-open');
-};
-
 document.querySelector('.gallery').addEventListener('click', openModal);
-
-document.addEventListener('keydown', closeModal);
 document.querySelector('.lightbox').addEventListener('click', closeModal);
+document.addEventListener('keydown', closeModal);
 
-document
-  .querySelector('[data-action="close-lightbox"]')
-  .addEventListener('click', closeModal);
+window.onbeforeunload = e => {
+  document.querySelector('.gallery').removeEventListener('click', openModal);
+  document.querySelector('.lightbox').removeEventListener('click', closeModal);
+  document.removeEventListener('keydown', closeModal);
+};
+
+// document
+//   .querySelector('[data-action="close-lightbox"]')
+//   .addEventListener('click', closeModal);
 
 // function changeMainImg({ target }) {
 //   const mainImg = document.querySelector('.fullview > img');
