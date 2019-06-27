@@ -1,6 +1,8 @@
+import gallery from '../data/gallery-items.js';
+
 export const closeModal = e => {
   e.preventDefault();
-  console.log(e.target.parentNode.className);
+
   if (
     e.keyCode === 27 ||
     e.target.className === 'material-icons' ||
@@ -11,10 +13,39 @@ export const closeModal = e => {
 
 export const openModal = e => {
   e.preventDefault();
-  console.log(e.target.attributes.alt.nodeValue);
   const currentImage = document.querySelector('.lightbox___image');
 
   currentImage.setAttribute('src', e.target.dataset.source);
   currentImage.setAttribute('alt', e.target.attributes.alt.nodeValue);
   document.querySelector('.lightbox').classList.add('is-open');
+};
+
+const findImageIndex = () => {
+  const src = document.querySelector('.lightbox___image').src;
+  return gallery.findIndex(image => image.original === src);
+};
+
+const changeImg = imageIndex => {
+  const elem = gallery.find(function(value, index) {
+    if (imageIndex === index) return value;
+  });
+
+  document.querySelector('.lightbox___image').src = elem.original;
+};
+
+export const showPrevious = () => {
+  const maxLength = gallery.length;
+  let imageIndex = findImageIndex();
+
+  imageIndex <= 0 ? (imageIndex = maxLength - 1) : imageIndex--;
+  changeImg(imageIndex);
+};
+
+export const showNext = () => {
+  const maxLength = gallery.length;
+  let imageIndex = findImageIndex(),
+    nextImageIndex = imageIndex + 1;
+
+  nextImageIndex >= maxLength ? (imageIndex = 0) : imageIndex++;
+  changeImg(imageIndex);
 };

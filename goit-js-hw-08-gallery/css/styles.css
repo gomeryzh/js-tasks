@@ -156,3 +156,79 @@ body {
 .lightbox__button i {
   font-size: 36px;
 }
+
+.btnLeft {
+  position: absolute;
+  margin-top: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid white;
+  opacity: 0.7;
+  margin-left: -40%;
+  transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+}
+
+.btnLeft:before {
+  content: '';
+  position: absolute;
+  background: rgba(200, 200, 200, 0.4);
+  height: 50px;
+  width: 50px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  margin-left: -15px;
+  margin-top: -25px;
+  transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+}
+
+.btnLeft:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.btnLeft:hover:before {
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4);
+}
+
+.btnRight {
+  position: absolute;
+  margin-top: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid white;
+  opacity: 0.7;
+  margin-left: 40%;
+  transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+}
+
+.btnRight:before {
+  content: '';
+  position: absolute;
+  background: rgba(200, 200, 200, 0.4);
+  height: 50px;
+  width: 50px;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  margin-left: -35px;
+  margin-top: -25px;
+  transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+}
+
+.btnRight:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.btnRight:hover:before {
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.4);
+}

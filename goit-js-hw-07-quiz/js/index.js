@@ -1,6 +1,8 @@
 import data from '../data/quiz-data.js';
 import { formSubmit } from '../utils/form.js';
 
+const form = document.querySelector('form');
+
 const createPageMarkup = ({ title, questions }) => {
   const markup = `<h3 class="form__title">${title}</h3> ${createListMarkup(
     questions,
@@ -39,12 +41,18 @@ const createChoises = (choises, index) => {
   return `<ol class="form__section-list">${listItems}</ol>`;
 };
 
-const form = document.querySelector('form');
-
-createPageMarkup(data);
-
-document.querySelector('form').addEventListener('submit', formSubmit);
-
-window.onbeforeunload = e => {
-  document.querySelector('form').removeEventListener('submit', formSubmit);
+const attachEvents = () => {
+  form.addEventListener('submit', formSubmit);
 };
+
+const deleteEvents = () => {
+  window.onbeforeunload = e => {
+    form.removeEventListener('submit', formSubmit);
+  };
+};
+
+const initialize = (function() {
+  createPageMarkup(data);
+  attachEvents();
+  deleteEvents();
+})();

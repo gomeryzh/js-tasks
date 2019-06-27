@@ -33,7 +33,9 @@ export const formSubmit = e => {
 
   if (result.length >= 5) {
     alert('Поздравляю, правильных овтетов больше 80%');
+    document.querySelector('form').reset();
   } else {
-    alert('Херовый из тебя js ninja)');
+    alert('Херовый из тебя js ninja. Пробуй ещё');
+    document.querySelector('form').reset();
   }
 };
