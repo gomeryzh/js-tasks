@@ -1,22 +1,17 @@
 import data from '../data/quiz-data.js';
 
 const getCorrectAnswers = questions => {
-  const answers = questions.map(question => {
-    const answer = question.choices.find((choise, index) => {
+  return questions.map(question => {
+    return question.choices.find((choise, index) => {
       if (index === question.answer) return choise;
     });
-
-    return answer;
   });
-
-  return answers;
 };
 
 const correctAnswers = getCorrectAnswers(data.questions);
 
-const checkAnswers = userAnswers => {
-  return correctAnswers.filter(answer => userAnswers.includes(answer));
-};
+const checkAnswers = userAnswers =>
+  correctAnswers.filter(answer => userAnswers.includes(answer));
 
 export const formSubmit = e => {
   e.preventDefault();
@@ -25,9 +20,7 @@ export const formSubmit = e => {
 
   let userAnswers = [];
 
-  formData.forEach(value => {
-    userAnswers.push(value);
-  });
+  formData.forEach(value => userAnswers.push(value));
 
   const result = checkAnswers(userAnswers);
 

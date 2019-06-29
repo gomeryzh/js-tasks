@@ -1,12 +1,12 @@
 'use strict';
 
+import gallery from '../data/gallery-items.js';
 import {
   openModal,
   closeModal,
   showPrevious,
-  showNext,
+  showNext
 } from '../utils/modal.js';
-import gallery from '../data/gallery-items.js';
 
 const createPreview = gallery => {
   return gallery.reduce(
@@ -21,7 +21,7 @@ const createPreview = gallery => {
       } class="gallery__image"><span class="gallery__icon">
       <i class="material-icons">zoom_out_map</i>
       </span></a></li>`,
-    '',
+    ''
   );
 };
 
@@ -50,7 +50,7 @@ const deleteListeners = () => {
   window.onbeforeunload = e => {
     document.querySelector('.gallery').removeEventListener('click', openModal);
 
-    document.addEventListener('keydown', closeModal);
+    document.removeEventListener('keydown', closeModal);
     document
       .querySelector('.lightbox')
       .removeEventListener('click', closeModal);
